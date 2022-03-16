@@ -27,6 +27,8 @@ EscolaPrincipal.AdicionarProfessor(professor4);
 #endregion
 
 
+# region Criando e adicionando alunos a escola
+
 var alunos = new List<Aluno>() {
     aluno1,
     aluno2,
@@ -34,15 +36,22 @@ var alunos = new List<Aluno>() {
     aluno4,
     aluno5
 };
+EscolaPrincipal.AdicionarAlunos(alunos);
 
-EscolaPrincipal.IniciarTurma(1, "AC4", professor3, alunos);
+# endregion
+
+
+EscolaPrincipal.IniciarTurma(1, "AC4", professor3);
+//EscolaPrincipal.AdicionarAlunosTurma("AC4");
+
 
 //var turma = EscolaPrincipal.RetornarTurma("AC4");
 //turma.ListarAlunos();
 
-EscolaPrincipal.ListarTurmas();
+//EscolaPrincipal.ListarTurmas();
 
 
 var turma = EscolaPrincipal.RetornarTurma("AC4");
-turma.FecharTurma();
+turma.AdicionarAlunosTurma();
+//turma.FecharTurma();
 turma.InfoTurma();

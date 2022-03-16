@@ -19,6 +19,7 @@ namespace SistemaEscolar.Entidades.SchoolContext
             Alunos = new List<Aluno>();
         }
 
+        #region Gerenciando professor
         /*O professor ate pode ficar inativo, isso quer dizer que ele parou de dar aula mas para um professor
          entrar numa escola ele tem que estar pronto para dar aula*/
         public void AdicionarProfessor(Professor professor)
@@ -60,6 +61,7 @@ namespace SistemaEscolar.Entidades.SchoolContext
                 throw new Exception("O professor selecionado nao esta cadastro em nosso banco de dados!");
             return professor;
         }
+        #endregion
 
         #region Gerenciando a turma 
         public Turma RetornarTurma(string codigo)
@@ -69,10 +71,10 @@ namespace SistemaEscolar.Entidades.SchoolContext
                 throw new Exception("A Turma escolhida nao existe em nosso banco de dados ");
             return turmaEscolhida;
         }
-        public void IniciarTurma(int id, string codigoTurma, Professor professor, List<Aluno> alunos)
+        public void IniciarTurma(int id, string codigoTurma, Professor professor)
         {
             ProfessorAtivo(professor);
-            Turma turma = new(id, codigoTurma, professor, alunos);
+            Turma turma = new(id, codigoTurma, professor, Alunos);
             Turmas.Add(turma);
         }
         public void ListarTurmas()
@@ -88,10 +90,39 @@ namespace SistemaEscolar.Entidades.SchoolContext
         #endregion
 
         #region Gerenciando alunos
-        /* public void AdicionarAluno(List<Aluno> alunos)
-         {
-             Alunos.AddRange(alunos);
-         }*/
+        public void AdicionarAlunos(List<Aluno> alunos)
+        {
+            Alunos.AddRange(alunos);
+        }
+
+        /*public void AdicionarAlunosTurma(string codigoTurma)
+        {
+            Console.WriteLine("Digite 0 para sair");
+            while (true)
+            {
+                ListarAlunos();
+                Console.WriteLine("Qual Aluno voce deseja inserir nessa turma ? ");
+                var valor = int.Parse(Console.ReadLine());
+                if (valor == 0) break;
+                RetornarTurma(codigoTurma).Alunos.Add(Alunos[valor - 1]);
+                Console.Clear();
+            }
+
+        }*/
+
+        // Lista os alunos da escola inteira
+        public void ListarAlunos()
+        {
+            int x = 1;
+            foreach (Aluno aluno in Alunos)
+            {
+                Console.WriteLine($"[{x}] {aluno.Name}");
+                x++;
+            }
+            Console.WriteLine();
+        }
+
+
         #endregion
 
         #region Propriedades
