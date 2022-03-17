@@ -10,13 +10,14 @@ namespace SistemaEscolar.Entidades.SchoolContext
     // gerenciador aplicacao escola
     public class School
     {
-        public School(int id, string name)
+        public School(int id, string name, Diretor diretor)
         {
             Id = id;
             Name = name;
             Professores = new List<Professor>();
             Turmas = new List<Turma>();
             Alunos = new List<Aluno>();
+            Cordenacao = new Cordenacao(diretor);
         }
 
         #region Gerenciando professor
@@ -95,21 +96,6 @@ namespace SistemaEscolar.Entidades.SchoolContext
             Alunos.AddRange(alunos);
         }
 
-        /*public void AdicionarAlunosTurma(string codigoTurma)
-        {
-            Console.WriteLine("Digite 0 para sair");
-            while (true)
-            {
-                ListarAlunos();
-                Console.WriteLine("Qual Aluno voce deseja inserir nessa turma ? ");
-                var valor = int.Parse(Console.ReadLine());
-                if (valor == 0) break;
-                RetornarTurma(codigoTurma).Alunos.Add(Alunos[valor - 1]);
-                Console.Clear();
-            }
-
-        }*/
-
         // Lista os alunos da escola inteira
         public void ListarAlunos()
         {
@@ -126,11 +112,14 @@ namespace SistemaEscolar.Entidades.SchoolContext
         #endregion
 
         #region Propriedades
+
         public int Id { get; set; }
         public string Name { get; set; }
         public List<Professor> Professores { get; private set; }
         public List<Turma> Turmas { get; private set; }
         public List<Aluno> Alunos { get; private set; }
+        public Cordenacao Cordenacao { get; private set; }
+
         #endregion
 
     }

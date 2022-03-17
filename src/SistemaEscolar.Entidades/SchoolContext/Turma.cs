@@ -20,7 +20,6 @@ namespace SistemaEscolar.Entidades.SchoolContext
             DataAbertura = DateTime.Now.AddDays(-1);
             DataFechamento = null;
         }
-        // delega
         public void FecharTurma()
         {
             Aberta = false;

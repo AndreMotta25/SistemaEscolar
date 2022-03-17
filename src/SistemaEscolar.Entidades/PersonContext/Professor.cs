@@ -16,6 +16,10 @@ namespace SistemaEscolar.Entidades.PersonContext
             Ativo = ativo;
         }
 
+        public override string ToString()
+        {
+            return $"Professor: {Name} Cpf: {Cpf}";
+        }
 
         // talvez usar um enum depois
         public string Materia { get; set; }

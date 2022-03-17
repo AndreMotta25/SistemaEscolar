@@ -17,7 +17,7 @@ Aluno aluno5 = new(5, "Regina", EGender.Feminino, "889.775.545-35");
 
 
 
-School EscolaPrincipal = new(1, "Jose mauro");
+School EscolaPrincipal = new(1, "Jose mauro", new Diretor("Andre"));
 
 #region Adicionando professores
 EscolaPrincipal.AdicionarProfessor(professor1);
@@ -40,7 +40,7 @@ EscolaPrincipal.AdicionarAlunos(alunos);
 
 # endregion
 
-
+EscolaPrincipal.ListarAlunos();
 EscolaPrincipal.IniciarTurma(1, "AC4", professor3);
 //EscolaPrincipal.AdicionarAlunosTurma("AC4");
 
