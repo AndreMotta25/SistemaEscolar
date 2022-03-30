@@ -8,51 +8,92 @@ using SistemaEscolar.Entidades.PersonContext;
 
 namespace SistemaEscolar.Entidades.MenuContext
 {
-    public static class Menu
+    public static class View
     {
-        public static int ShowMenu()
+        public static int ViewMenu()
         {
             Console.WriteLine("======= Painel de Administração =======");
             Console.WriteLine("[0] Sair");
             Console.WriteLine("[1] Adicionar Professor");
-            Console.WriteLine("[2] Listar Professor");
+            Console.WriteLine("[2] Adicionar Aluno");
+            Console.WriteLine("[3] Listar Professor");
+            Console.WriteLine("[4] Criar uma turma");
             Console.WriteLine("=======================================");
             Console.WriteLine("Qual opção voce deseja ?");
             return int.Parse(Console.ReadLine());
         }
 
-        public static Professor ShowMontarProfessor(int id)
+        public static Professor ViewMontarProfessor(int id)
         {
             Console.WriteLine("======= Painel de Professores =======");
+
+            #region Nome
+
             Console.WriteLine("Nome do professor: ");
             string nome = Console.ReadLine();
+
+            #endregion
+
+            #region Cpf
+
             Console.WriteLine("cpf do professor: ");
             string cpf = Console.ReadLine();
+
+            #endregion
+
+            #region Materia
+
             Console.WriteLine("Materia: ");
             string materia = Console.ReadLine();
 
-            Console.WriteLine("Genero do professor: ");
-            var genero = Console.ReadLine().ToLower();
+            #endregion
 
-            EGender generoEscolhido;
+            #region Sexo
+
+            Console.WriteLine("Genero do professor: ");
+            Console.WriteLine($"[{0}]{EGender.Masculino}");
+            Console.WriteLine($"[{1}]{EGender.Feminino}");
+            var genero = (EGender)int.Parse(Console.ReadLine());
+
+            #endregion
 
             bool ativo = true;
 
-            switch (genero)
-            {
-                case "masculino":
-                    generoEscolhido = EGender.Masculino;
-                    break;
+            return new Professor(id, nome, genero, cpf, materia, ativo);
+        }
+        public static string ViewMontarTurma()
+        {
+            Console.WriteLine("Codigo Da turma:");
+            string codigoTurma = Console.ReadLine();
+            return codigoTurma;
+        }
+        public static Aluno ViewMontarAluno(int id)
+        {
+            Console.WriteLine("======= Painel de Alunos =======");
 
-                case "feminino":
-                    generoEscolhido = EGender.Feminino;
-                    break;
+            #region Nome
 
-                default:
-                    throw new Exception("Ainda nao temos outros tipos de generos");
-            }
+            Console.WriteLine("Nome do Aluno: ");
+            string nome = Console.ReadLine();
 
-            return new Professor(id, nome, generoEscolhido, cpf, materia, ativo);
+            #endregion
+
+            #region Cpf
+
+            Console.WriteLine("cpf do aluno: ");
+            string cpf = Console.ReadLine();
+
+            #endregion
+
+            #region Sexo
+            Console.WriteLine("Genero do aluno: ");
+            Console.WriteLine($"[{0}]{EGender.Masculino}");
+            Console.WriteLine($"[{1}]{EGender.Feminino}");
+            var genero = (EGender)int.Parse(Console.ReadLine());
+
+            #endregion
+
+            return new Aluno(id, nome, genero, cpf);
         }
     }
 }

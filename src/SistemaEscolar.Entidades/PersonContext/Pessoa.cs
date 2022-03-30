@@ -18,8 +18,8 @@ namespace SistemaEscolar.Entidades.PersonContext
         }
 
         public int Id { get; private set; }
-        public string Name { get; private set; }
-        public EGender Gender { get; private set; }
-        public string Cpf { get; private set; }
+        public string? Name { get; private set; }
+        public EGender? Gender { get; private set; }
+        public string? Cpf { get; private set; }
     }
 }

@@ -18,7 +18,7 @@ namespace SistemaEscolar.Entidades.PersonContext
 
         public override string ToString()
         {
-            return $"Professor: {Name} Cpf: {Cpf}";
+            return $"Professor: {Name} Cpf: {Cpf} Sexo:{Gender} ";
         }
 
         // talvez usar um enum depois

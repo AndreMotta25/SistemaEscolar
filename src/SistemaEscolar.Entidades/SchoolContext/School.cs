@@ -1,4 +1,5 @@
-﻿using SistemaEscolar.Entidades.PersonContext;
+﻿using SistemaEscolar.Entidades.Interface;
+using SistemaEscolar.Entidades.PersonContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +19,25 @@ namespace SistemaEscolar.Entidades.SchoolContext
             Turmas = new List<Turma>();
             Alunos = new List<Aluno>();
             Cordenacao = new Cordenacao(diretor);
+            Pessoas = new List<Pessoa>();
+        }
+
+        /*Se toda vez que eu for criar um tipo de pessoa diferente, eu tiver que modificar essa classe para acrecentar 
+         mais um metodo, como posso manter a segunrança dela ? ela tem que mudar por apenas um motivo e nao para varios*/
+        public void Guardar(ICriar criador)
+        {
+            List<Pessoa> pessoas = criador.Criar();
+            Pessoas.AddRange(pessoas);
         }
 
         #region Gerenciando professor
+
         /*O professor ate pode ficar inativo, isso quer dizer que ele parou de dar aula mas para um professor
          entrar numa escola ele tem que estar pronto para dar aula*/
         public void AdicionarProfessor(Professor professor)
         {
+
+            // tecnicamente um professor nunca vai ser false pq o construtor ja fala que ele é ativo
             if (professor.Ativo == true)
             {
                 Professores.Add(professor);
@@ -36,16 +49,11 @@ namespace SistemaEscolar.Entidades.SchoolContext
 
         public bool DesativarProfessor(string cpf)
         {
-            Professor professorDemitido = RetornarProfessor(cpf);
-            professorDemitido.Ativo = false;
+            Cordenacao.DesativarProfessor(RetornarProfessor(cpf));
             return true;
         }
 
-        public List<Professor> ListarProfessores()
-        {
-            return Professores;
-        }
-
+        // esse metodo só vai fazer sentido se eu utilizar em outras partes
         public bool ProfessorAtivo(Professor professor)
         {
             if (!professor.Ativo)
@@ -55,13 +63,17 @@ namespace SistemaEscolar.Entidades.SchoolContext
             return true;
         }
 
+        // Talvez isto estaria melhor dentro de um repository de professor
         public Professor RetornarProfessor(string cpf)
         {
-            Professor professor = Professores.FirstOrDefault(professor => professor.Cpf == cpf);
+            Pessoa professor = Pessoas.FirstOrDefault(professor => professor.Cpf == cpf);
+
             if (professor == null)
                 throw new Exception("O professor selecionado nao esta cadastro em nosso banco de dados!");
-            return professor;
+
+            return (Professor)professor;
         }
+
         #endregion
 
         #region Gerenciando a turma 
@@ -119,6 +131,8 @@ namespace SistemaEscolar.Entidades.SchoolContext
         public List<Turma> Turmas { get; private set; }
         public List<Aluno> Alunos { get; private set; }
         public Cordenacao Cordenacao { get; private set; }
+
+        public List<Pessoa> Pessoas { get; private set; }
 
         #endregion
 

@@ -19,5 +19,18 @@ namespace SistemaEscolar.Entidades.SchoolContext
         {
             turma.FecharTurma();
         }
+        public bool DesativarProfessor(Professor professor)
+        {
+            try
+            {
+                professor.Ativo = false;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Por algum motivo não podemos demitir o professor {professor.Name}");
+                return false;
+            }
+        }
     }
 }
