@@ -26,10 +26,9 @@ while (true)
     else if (opt == 3)
     {
         // lista os professores
-        foreach (var pessoa in EscolaPrincipal.Pessoas)
+        foreach (var pessoa in EscolaPrincipal.Professores)
         {
-            if (pessoa is Professor)
-                Console.WriteLine(((Professor)pessoa).ToString());
+            Console.WriteLine(pessoa.ToString());
         }
     }
     else if (opt == 4)

@@ -26,7 +26,7 @@ namespace SistemaEscolar.Entidades.SchoolContext
          mais um metodo, como posso manter a segunrança dela ? ela tem que mudar por apenas um motivo e nao para varios*/
         public void Guardar(ICriar criador)
         {
-            List<Pessoa> pessoas = criador.Criar();
+            List<Pessoa> pessoas = criador.Criar(this);
             Pessoas.AddRange(pessoas);
         }
 

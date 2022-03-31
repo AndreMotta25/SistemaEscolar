@@ -1,4 +1,5 @@
 ﻿using SistemaEscolar.Entidades.PersonContext;
+using SistemaEscolar.Entidades.SchoolContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace SistemaEscolar.Entidades.Interface
 {
     public interface ICriar
     {
-        List<Pessoa> Criar();
+        List<Pessoa> Criar(School escola);
     }
 }

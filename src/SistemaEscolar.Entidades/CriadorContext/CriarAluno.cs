@@ -1,6 +1,7 @@
 ﻿using SistemaEscolar.Entidades.Interface;
 using SistemaEscolar.Entidades.MenuContext;
 using SistemaEscolar.Entidades.PersonContext;
+using SistemaEscolar.Entidades.SchoolContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace SistemaEscolar.Entidades.CriadorContext
 {
     public class CriarAluno : ICriar
     {
-        public List<Pessoa> Criar()
+        public List<Pessoa> Criar(School escola)
         {
             int idAluno = 0;
             List<Pessoa> Alunos = new List<Pessoa>();
@@ -19,6 +20,7 @@ namespace SistemaEscolar.Entidades.CriadorContext
             {
                 Aluno aluno = View.ViewMontarAluno(idAluno);
                 Alunos.Add(aluno);
+                escola.Alunos.Add(aluno);
 
                 Console.WriteLine("Deseja continuar ? (S):(N)");
                 string resposta = Console.ReadLine().ToLower();

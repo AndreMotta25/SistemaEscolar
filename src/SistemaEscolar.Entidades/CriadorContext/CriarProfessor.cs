@@ -1,18 +1,14 @@
 ﻿using SistemaEscolar.Entidades.Interface;
 using SistemaEscolar.Entidades.MenuContext;
 using SistemaEscolar.Entidades.PersonContext;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SistemaEscolar.Entidades.SchoolContext;
 
 namespace SistemaEscolar.Entidades.CriadorContext
 {
     public class CriarProfessor : ICriar
     {
         // antes esse codigo estava solto no program.cs. ao meu ver isto esta errado, pois deve estar encapsulado
-        public List<Pessoa> Criar()
+        public List<Pessoa> Criar(School escola)
         {
             int idProfessor = 0;
             List<Pessoa> professores = new List<Pessoa>();
@@ -20,6 +16,7 @@ namespace SistemaEscolar.Entidades.CriadorContext
             {
                 Professor professor = View.ViewMontarProfessor(idProfessor);
                 professores.Add(professor);
+                escola.Professores.Add(professor);
 
                 Console.WriteLine("Deseja continuar ? (S):(N)");
                 string resposta = Console.ReadLine().ToLower();
