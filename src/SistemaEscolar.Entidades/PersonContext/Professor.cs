@@ -9,11 +9,12 @@ namespace SistemaEscolar.Entidades.PersonContext
 {
     public class Professor : Pessoa
     {
-        public Professor(int id, string name, EGender gender, string cpf, string materia, bool ativo) :
+        public Professor(int id, string name, EnumContext.Enum gender, string cpf, string materia, bool ativo) :
             base(id, name, gender, cpf)
         {
             Materia = materia;
             Ativo = ativo;
+            Ocupacao = EOcupação.Professor;
         }
 
         public override string ToString()

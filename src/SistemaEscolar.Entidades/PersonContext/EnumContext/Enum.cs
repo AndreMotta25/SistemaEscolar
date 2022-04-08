@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace SistemaEscolar.Entidades.PersonContext.EnumContext
 {
-    public enum EGender
+    public enum Enum
     {
         Masculino, Feminino
+    }
+
+    public enum EOcupação
+    {
+        Diretor = 1, Aluno = 2, Professor = 3
     }
 }

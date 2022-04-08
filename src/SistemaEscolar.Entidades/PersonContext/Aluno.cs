@@ -9,8 +9,9 @@ namespace SistemaEscolar.Entidades.PersonContext
 {
     public class Aluno : Pessoa
     {
-        public Aluno(int id, string name, EGender gender, string cpf) : base(id, name, gender, cpf)
+        public Aluno(int id, string name, EnumContext.Enum gender, string cpf) : base(id, name, gender, cpf)
         {
+            Ocupacao = EOcupação.Aluno;
         }
     }
 }

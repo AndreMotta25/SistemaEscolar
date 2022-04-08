@@ -51,9 +51,9 @@ namespace SistemaEscolar.Entidades.MenuContext
             #region Sexo
 
             Console.WriteLine("Genero do professor: ");
-            Console.WriteLine($"[{0}]{EGender.Masculino}");
-            Console.WriteLine($"[{1}]{EGender.Feminino}");
-            var genero = (EGender)int.Parse(Console.ReadLine());
+            Console.WriteLine($"[{0}]{PersonContext.EnumContext.Enum.Masculino}");
+            Console.WriteLine($"[{1}]{PersonContext.EnumContext.Enum.Feminino}");
+            var genero = (PersonContext.EnumContext.Enum)int.Parse(Console.ReadLine());
 
             #endregion
 
@@ -87,9 +87,9 @@ namespace SistemaEscolar.Entidades.MenuContext
 
             #region Sexo
             Console.WriteLine("Genero do aluno: ");
-            Console.WriteLine($"[{0}]{EGender.Masculino}");
-            Console.WriteLine($"[{1}]{EGender.Feminino}");
-            var genero = (EGender)int.Parse(Console.ReadLine());
+            Console.WriteLine($"[{0}]{PersonContext.EnumContext.Enum.Masculino}");
+            Console.WriteLine($"[{1}]{PersonContext.EnumContext.Enum.Feminino}");
+            var genero = (PersonContext.EnumContext.Enum)int.Parse(Console.ReadLine());
 
             #endregion
 
